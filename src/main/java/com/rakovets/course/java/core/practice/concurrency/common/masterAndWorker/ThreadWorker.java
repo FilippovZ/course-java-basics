@@ -18,15 +18,6 @@ public class ThreadWorker extends Thread {
     public void run() {
         int counter = 0;
         while (isActive) {
-            if (counter == listOfNumbers.size()) {
-                try (FileWriter writer = new FileWriter("src/test/resources/practice/concurrency/masterWorker/worker.txt", true)) {
-                    Thread.sleep(1000);
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    writer.write(timestamp + " - ...\n");
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
             if (counter < listOfNumbers.size() && listOfNumbers.get(counter) != -1) {
                 try (FileWriter writer = new FileWriter("src/test/resources/practice/concurrency/masterWorker/worker.txt", true)) {
                     Thread.sleep(listOfNumbers.get(counter) * 1000);
